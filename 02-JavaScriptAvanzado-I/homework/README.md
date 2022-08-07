@@ -35,6 +35,8 @@ var c = function(a, b, c) {
 c(8,9,10);
 console.log(b); // 10
 console.log(x); // 1
+
+// 10 8 8 9 10 1
 ```
 
 ```javascript

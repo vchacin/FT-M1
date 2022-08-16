@@ -15,10 +15,27 @@ Como ejercicio adicional y completamente opcional, al terminar de resolver este 
 */
 
 function nFactorial(n) {
+  if (n > -1 && n < 2) return 1;
+  return n * nFactorial(n - 1);
 }
 
+/* 
+
+4! = 4 * 3!
+3! = 3 * 2!
+2! = 2 * 1!
+1! = 1
+
+*/
+
 function nFibonacci(n) {
+  if (n === 0 || n === 1) return n;
+  return nFibonacci(n-1) + nFibonacci(n-2);
 }
+
+/*
+Xn = Xn-1 * Xn-2
+*/
 
 /*
 Implementar la clase Queue, sabiendo que es una estructura de tipo FIFO, donde el primer elemento que ingresa es el primero que se quita. Definir los siguientes métodos:
@@ -29,9 +46,31 @@ Implementar la clase Queue, sabiendo que es una estructura de tipo FIFO, donde e
 Pueden utilizar class o función constructora.
 */
 
-function Queue() {
+class Queue {
+  constructor (){
+    this.queue = [];
+  }
 
+  enqueue(elemento) {
+    return this.queue.push(elemento);
+  }
+
+  dequeue() {
+    if (this.queue.length === 0) return undefined;
+    return this.queue.shift();
+  }
+
+  size(){
+    return this.queue.length;
+  }
 }
+
+/*
+function Queue() {
+  this.queue = [];
+}
+
+
 
 // No modifiquen nada debajo de esta linea
 // --------------------------------

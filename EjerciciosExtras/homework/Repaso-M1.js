@@ -54,6 +54,24 @@ var countProps = function(obj) {
 LinkedList.prototype.changeNotNumbers = function(){
     // Tu código aca:
 
+    let contador = 0;
+    let current = this.head;
+    if (this.head) {
+      let dato = Number(current.value);
+      if (isNaN(dato)) {
+        current.value = "Kiricocho";
+        contador++;
+      }
+    }
+      while (current.next) {
+        let dato = Number(current.next.value);
+        if (isNaN(dato)) {
+          current.next.value = "Kiricocho";
+          contador++;
+        }
+        current=current.next;
+      }
+    return contador;
 }
 
 
@@ -67,7 +85,23 @@ LinkedList.prototype.changeNotNumbers = function(){
 
 var mergeQueues = function(queueOne, queueTwo) {
     // Tu código aca:
-
+    let queue = new Queue();
+    const queue1 = [...queueOne.array];
+    const queue2 = [...queueTwo.array];
+    let array = [];
+    let longMax = Math.max(queue1.length,queue2.length);
+    for(let j = 0; j < longMax; j++){
+      if(queue1[j] != undefined){
+        array.push(queue1[j]);
+      }
+      if(queue2[j] != undefined){
+        array.push(queue2[j]);
+      }
+    }
+    for(let i = 0; i < array.length; i ++){
+    queue.enqueue(array[i]);
+    }
+    return queue;
 }
 
 
@@ -82,14 +116,30 @@ var mergeQueues = function(queueOne, queueTwo) {
 
 var closureMult = function(multiplier) {
     // Tu código aca:
-
+    return function(number){
+        return multiplier * number;
+    }
 }
 
 // Implementar el método sum dentro del prototype de BinarySearchTree
 // que debe retornar la suma total de los valores dentro de cada nodo del arbol
-BinarySearchTree.prototype.sum = function() {
+BinarySearchTree.prototype.sum = function(arr = []) {
     // Tu código aca:
-
+    function cb(arr) {
+    let sumaTotal = arr.reduce(function (pre, cur) {
+            return (pre += cur);
+        });
+    return sumaTotal; 
+    }
+    
+    arr.push(this.value);
+    if (this.left) {
+        this.left.sum(arr);
+    }
+    if (this.right) {
+        this.right.sum(arr);
+    }
+    return cb(arr);
 }
 
 module.exports = {
